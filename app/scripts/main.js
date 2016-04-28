@@ -260,12 +260,13 @@
             */
 
       var http2 = new XMLHttpRequest();
-      //url3 is testesRoom in hipchat:: url2 is office room in hipchat!
+      //url3 is testesRoom in hipchat:: url2 is OFFICE room in hipchat! :: url 4 is bola room
+      var url4 = "https://topdox.hipchat.com/v2/room/2680071/notification?auth_token=uRWSZdvZIc0PsPsgxgzx5F7ZwvKs3LxhRfKFo7Bo";
       var url3 = "https://topdox.hipchat.com/v2/room/2468884/notification?auth_token=CtBPkX4kb626xhockIUJbbMKphesVZ9uwm8Y1HZ9";
       var url2 = "https://topdox.hipchat.com/v2/room/2461171/notification?auth_token=8VTZFxlXzAm9XFKFZGdHcWRN3NpWd7ekhw0naTk7";
       var params = "color=green&message="+textToSend+"&notify=false&message_format=text";
 
-      http2.open("POST", url2, true);
+      http2.open("POST", url4, true);
 
       http2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       http2.onreadystatechange = function() {
