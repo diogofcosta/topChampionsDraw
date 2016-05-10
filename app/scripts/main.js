@@ -107,26 +107,26 @@
   }
   var playersToDraft = {
     "players":[
-      {"name":"(acmaia)\tAndré Maia", "skill":5.85},
-      {"name":"(tonisedutor)\tAntónio 'Ceguinho' Soares",	"skill":4.93},
-      {"name":"(jorge)\tJorge 'Buffon' Reis", "skill":5.75},
-      {"name":"Diogo 'O Guia' Costa", "skill":5.67},
-      {"name":"(aloisi)\tAndrea 'Pirlo' Aloisi", "skill":7.38},
-      {"name":"João Costa", "skill":4.90},
-      {"name":"(zao)\tJoão 'Jay-Z' Zão", "skill":9.73},
-      {"name":"(marcos)\tMarcos 'Levezinho' Oliveira", "skill":6.33},
-      {"name":"Miguel 'Quebra-Ossos' Oliveira", "skill":6.50},
-      {"name":"Pedro 'Firefighter' Letra", "skill":7.46},
-      {"name":"(lucy)\tLuciano 'Lenhador' Santos", "skill":6.08},
-      {"name":"(luis)\tLuís Gomes", "skill":8.40},
-      {"name":"Nelson 'O Boss' Pereira", "skill":9.20},
-      {"name":"Nelson 'O Outro' Pereira", "skill":5.54},
-      {"name":"(tiagoc)\tTiago '5 minutos' Coelho", "skill":7.79},
-      {"name":"(wily93)\tWilson 'Willy93' Oliveira", "skill":4.64},
-      {"name":"Factor 'X' Surpresa", "skill":5.00}
+      {"name":"(acmaia)\tAndré Maia", "skill":5.85, "gk": false},
+      {"name":"(tonisedutor)\tAntónio 'Ceguinho' Soares",	"skill":4.93, "gk": false},
+      {"name":"(jorge)\tJorge 'Buffon' Reis", "skill":5.75, "gk": true},
+      {"name":"Diogo 'O Guia' Costa", "skill":5.67, "gk": true},
+      {"name":"(aloisi)\tAndrea 'Pirlo' Aloisi", "skill":7.38, "gk": false},
+      {"name":"João Costa", "skill":4.90, "gk": false},
+      {"name":"(zao)\tJoão 'Jay-Z' Zão", "skill":9.73, "gk": false},
+      {"name":"(marcosgigante)\tMarcos 'Gigantinho Slimani' Oliveira", "skill":6.33, "gk": false},
+      {"name":"Miguel 'Quebra-Ossos' Oliveira", "skill":6.50, "gk": false},
+      {"name":"Pedro 'Firefighter' Letra", "skill":7.46, "gk": false},
+      {"name":"(lucy)\tLuciano 'Lenhador' Santos", "skill":6.08, "gk": false},
+      {"name":"(luis)\tLuís Gomes", "skill":8.40, "gk": false},
+      {"name":"Nelson 'O Boss' Pereira", "skill":9.20, "gk": false},
+      {"name":"Nelson 'O Outro' Pereira", "skill":5.54, "gk": true},
+      {"name":"(tiagoc)\tTiago 'Mr Pedidos Especiais 6 minutos' Coelho", "skill":7.79, "gk": false},
+      {"name":"(wily93)\tWilson 'Willy93' Oliveira", "skill":4.64, "gk": false},
+      {"name":"Factor 'X' Surpresa", "skill":5.00, "gk": false},
+      {"name":"Factor 'X' Surpresa GK", "skill":5.00, "gk": true}
     ]
   };
-
 
   var countDraft = 0;
 
@@ -224,6 +224,14 @@
         evt.target.myCounter++;
         draftTeams(evt);
     }
+    else if((numGksTeam(team1) > 1 && numGksTeam(team2) < 1) || (numGksTeam(team2) > 1 && numGksTeam(team1) < 1))
+    {
+    	console.log("Equipas desiquilibradas em termos de GR, vamos refazer o draft!");
+        resetDraft();
+        draftPot.parentNode.replaceChild(draftPotBckp,draftPot);
+        evt.target.myCounter++;
+        draftTeams(evt);
+    }
     else
     {
       var team1Array = createArrayOfNamesFromTeam(team1);
@@ -241,6 +249,7 @@
       }
       textToSend += "\n Team 2 Estimated Score: "+scoreTeam2 +"\n";
       textToSend += "\nFinal teams drafted after "+ evt.target.myCounter +" times! Good luck!\nPowered by topChampionsDraw app!\n(yey)";
+      //console.log(textToSend);
 
       /*
       UNCOMMENT TO SEND TO SLACK
@@ -259,6 +268,7 @@
       http.send(payload);
             */
 
+            
       var http2 = new XMLHttpRequest();
       //url3 is testesRoom in hipchat:: url2 is OFFICE room in hipchat! :: url 4 is bola room
       var url4 = "https://topdox.hipchat.com/v2/room/2680071/notification?auth_token=uRWSZdvZIc0PsPsgxgzx5F7ZwvKs3LxhRfKFo7Bo";
@@ -275,6 +285,7 @@
         }
       }
       http2.send(params);
+      
 
     }
   }
@@ -377,6 +388,24 @@
       result.push(team.childNodes[i].textContent);
     }
     return result;
+  }
+
+  function numGksTeam(team)
+  {
+  	//console.log("teamHasGK function: \n");
+  	var numGks = 0;
+  	var players = team.childNodes;
+    for(var i = 0 ; i < players.length; i++)
+    {
+      var currentPlayer = players[i].textContent;
+      var player = getPlayerObjectWithName(currentPlayer);
+      //console.log("player: ",player);
+      if(player.gk == true)
+      	numGks++;
+    }
+    //console.log("team has"+numGks+" gk");
+    
+    return numGks;
   }
 
 })();
