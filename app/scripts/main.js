@@ -108,21 +108,22 @@
   var playersToDraft = {
     "players":[
       {"name":"(acmaia)\tAndré Maia", "skill":5.85, "gk": false},
-      {"name":"(tonisedutor)\tAntónio 'Ceguinho' Soares",	"skill":4.93, "gk": false},
+      {"name":"(tonisedutor)\tAntónio 'Namaste' Soares",	"skill":4.93, "gk": false},
       {"name":"(jorge)\tJorge 'Buffon' Reis", "skill":5.75, "gk": true},
       {"name":"Diogo 'O Guia' Costa", "skill":5.67, "gk": true},
       {"name":"(aloisi)\tAndrea 'Pirlo' Aloisi", "skill":7.38, "gk": false},
       {"name":"João Costa", "skill":4.90, "gk": false},
       {"name":"(zao)\tJoão 'Jay-Z' Zão", "skill":9.73, "gk": false},
       {"name":"(marcosgigante)\tMarcos 'Gigantinho Slimani' Oliveira", "skill":6.33, "gk": false},
-      {"name":"Miguel 'Quebra-Ossos' Oliveira", "skill":6.50, "gk": false},
-      {"name":"Pedro 'Firefighter' Letra", "skill":7.46, "gk": false},
+      {"name":"(miguelswag)\tMiguel 'Quebra-Ossos' Oliveira", "skill":6.50, "gk": false},
+      {"name":"Pedro 'James' Letra", "skill":7.46, "gk": false},
       {"name":"(lucy)\tLuciano 'Lenhador' Santos", "skill":6.08, "gk": false},
       {"name":"(luis)\tLuís Gomes", "skill":8.40, "gk": false},
       {"name":"Nelson 'O Boss' Pereira", "skill":9.20, "gk": false},
       {"name":"Nelson 'O Outro' Pereira", "skill":5.54, "gk": true},
       {"name":"(tiagoc)\tTiago 'Mr Pedidos Especiais 6 minutos' Coelho", "skill":7.79, "gk": false},
       {"name":"(wily93)\tWilson 'Willy93' Oliveira", "skill":4.64, "gk": false},
+      {"name":"\tJake Goh Si Yuan", "skill":6.00, "gk": false},
       {"name":"Factor 'X' Surpresa", "skill":5.00, "gk": false},
       {"name":"Factor 'X' Surpresa GK", "skill":5.00, "gk": true}
     ]
